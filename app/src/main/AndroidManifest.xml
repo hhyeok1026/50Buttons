@@ -12,12 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FiftyButtons"
         tools:targetApi="31">
-
         <!--
             액티비티에서 LAUNCHER가 여러개 일 경우, ide의 툴바에 있는 run을 사용하게 되면,
             manifest에 제일 위에 있는 액티비티가 run된다.
             따로 액티비티를 돌리고 싶다면, activity를 우클릭해서 run을 해주면 된다.
+            Launcher가 여러개 있으면 앱 서랍에서 앱이 여러개 보이게 되는듯. 삭제하면 한번에 삭제되고.
         -->
+        <activity
+            android:name=".activity.Button3Activity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.Button2Activity"
             android:exported="true">
@@ -27,7 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.Button1Activity"
             android:exported="true">
