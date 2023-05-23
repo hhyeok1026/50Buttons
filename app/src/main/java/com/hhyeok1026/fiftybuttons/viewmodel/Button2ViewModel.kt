@@ -33,6 +33,8 @@ import androidx.lifecycle.ViewModel // 현재 viewmodel 2.6.1버전
     --------------------------------------------
 
     (대강 알아보았다.)
+    -> 블로그에 포스팅 하였음. ( https://hhyeok1026.tistory.com/82 )
+
     _TODO CharSequence와 String의 차이점은 뭘까? -> 대충보니까 CharSequence가 인터페이스고 String은 CharSequence를 구현하는 클래스인듯?
 
     'String'
@@ -63,22 +65,19 @@ import androidx.lifecycle.ViewModel // 현재 viewmodel 2.6.1버전
 
     업캐스팅은 상위타입으로 더 일반적인 변환이므로 안전함.
     val buttonText: CharSequence = button.text에서의 대입은 업캐스팅입니다.
+    (아니, 이미 button.text = "String"을 하면서 Charseqence로 업캐스팅 되었을 것이고, 그냥 대입 연산일것 같다?)
 
     업캐스팅, 다운캐스팅시, 데이터나 메모리 구조에는 관련을 주지않고, 보이는 자료형에만 영향을 주게 된다.
     업캐스팅이 안전하다는 말은, 업캐스팅 될 자료형을 기준으로, 업캐스팅 된 이후에 그 변수를 사용할 때 문제가 없음을 의미한다.
 
     다운캐스팅은 val buttonText: String = button.text as String
     CharSequence를 String으로 다운캐스팅하는 것은 안전하지 않음.
-
-    -> TODO 해당 내용 정리해서 블로깅을 한번 하면 좋겠다.
-
-
  */
 
 class Button2ViewModel : ViewModel() {
 
     // 가시성이 private로 하지 않았고, 기본 가시성은 public이라서 좋지 않은 코드일 것이다.
-    // TODO : 가시성(visibility modifiers)을 개선해야함 -> Button3Acitity에서 하자.
+    // (하긴했다. 맞는지 모르겠다)_TODO : 가시성(visibility modifiers)을 개선해야함 -> Button3Acitity에서 하자
 
     val buttonText: MutableLiveData<CharSequence> by lazy {
         // Log.d("Button2ViewModel", "lazy 하게 초기화 되는가 - 이게 무조건 바로 찍히는데, 이렇게 확인할게 아닌듯?")
@@ -86,7 +85,7 @@ class Button2ViewModel : ViewModel() {
     }
 
     fun initializeButtonText(text: CharSequence) {
-        // TODO ui에 값이 초기값이 있을때, LiveData의 값을 초기화 시키는 좋은 방법은 뭘까???
+        // _TODO ui에 값이 초기값이 있을때, LiveData의 값을 초기화 시키는 좋은 방법은 뭘까??? (그냥 뷰모델에서 라이브데이터 값 만들때 초기화 하는게 나을듯??)
         buttonText.value = text
     }
 
@@ -105,4 +104,4 @@ class Button2ViewModel : ViewModel() {
 }
 
 
-// TODO : 다음은 ButtonState 데이터 클래스를 만들어서 text를 변경해봐야겠다. -> Button3Acitivy에서 해보자.
+// _TODO : 다음은 ButtonState 데이터 클래스를 만들어서 text를 변경해봐야겠다. -> Button3Acitivy에서 해보자. 하긴했다.. State값에 뭘 넣을지 고민을 해야한다.

@@ -13,10 +13,12 @@
         android:theme="@style/Theme.FiftyButtons"
         tools:targetApi="31">
         <!--
-            액티비티에서 LAUNCHER가 여러개 일 경우, ide의 툴바에 있는 run을 사용하게 되면,
-            manifest에 제일 위에 있는 액티비티가 run된다.
+            액티비티에서 LAUNCHER가 여러개 일 경우, ide의 툴바에 있는 run을 사용하게 되면, manifest에 제일 위에 있는 액티비티가 run된다.
             따로 액티비티를 돌리고 싶다면, activity를 우클릭해서 run을 해주면 된다.
-            Launcher가 여러개 있으면 앱 서랍에서 앱이 여러개 보이게 되는듯. 삭제하면 한번에 삭제되고.
+
+            LAUNCHER 여러개 있으면 앱 서랍에서 앱이 여러개 보이게 되는듯. 삭제하면 한번에 삭제되고.
+            따라서, 현재 작업할 버튼만 LAUNCHER로 지정해서 돌려야겠다, 근데 이거는 앱서랍에서 클릭할때 처음 뜰거를 지정하는거고,
+            개발 중에는 LAUNCHER를 따로 지정하지 않아도, Acitivty를 따로 run할 수 있는듯?, 연습용이므로 딱히 지정할 필요도 없었다.
         -->
         <activity
             android:name=".activity.Button3Activity"
@@ -30,20 +32,10 @@
         <activity
             android:name=".activity.Button2Activity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.Button1Activity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
