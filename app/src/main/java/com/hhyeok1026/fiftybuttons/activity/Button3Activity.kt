@@ -11,6 +11,9 @@ import com.hhyeok1026.fiftybuttons.databinding.ActivityButton3Binding
 import com.hhyeok1026.fiftybuttons.uiState.Button3State
 import com.hhyeok1026.fiftybuttons.viewmodel.Button3ViewModel
 
+/*
+viewmodel에서 state를 넣고, 가시성을 수정한 예제
+ */
 class Button3Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityButton3Binding
