@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+// import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.hhyeok1026.fiftybuttons.databinding.FragmentButton4Binding
 import com.hhyeok1026.fiftybuttons.viewmodel.Button4FragmentViewModel
 
 
 /*
-
 Fragment생명주기가, 한국어문서는 관리가 안되고 있고, 영어문서는 설명이 뭔가 더 어렵게 되어있네..?
 영어문서를 이해를 해야할텐데..
 lifecycle owner, lifecycle satate?에 대해서도 알아야 할 듯.
@@ -22,16 +24,16 @@ lifecycle owner, lifecycle satate?에 대해서도 알아야 할 듯.
 영어 - https://developer.android.com/guide/fragments/lifecycle
 
 Downward state transitions에서,
-STARTED, CREATED 된다는게 이해가 안되는데..?
+STARTED, CREATED 된다는게 이해가 안되는데..? -> 이거는 따로, 라이프사이클 state, 라이프사이클 오너 쪽을 봐야 이해가 될 듯.
 
 
 액티비티에서 생명주기의 위쪽 아래쪽에 넣어둔 로그들이 <-> 프래그먼트와도 연관이 뭔가 있다..!
 복잡하므로 필요할때 이거 돌려보고 이해해야 할 듯.
 
 
-TODO fragment에서 뷰모델 초기화를 어디서하나?
+_TODO fragment에서 뷰모델 초기화를 어디서하나?
  힐트를 쓰면 그냥 바로 필드변수로 쓰는거 같은데..?
- fragment도 그냥 액티비티에서 by로 만들어서 쓰면 될 듯?
+ -> fragment도 그냥 액티비티에서 by로 만들어서 쓰면 되는듯.
  */
 
 
@@ -42,7 +44,8 @@ class Button4Fragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: Button4FragmentViewModel
+    // by viewModels()를 fragement에서 쓰려면, fragemnt-ktx에서 가져와야하는듯.
+    private val viewModel: Button4FragmentViewModel by viewModels()
 
     // =============================================
     // Activity State - Created
@@ -84,10 +87,24 @@ class Button4Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("Button4Fragment", "Button4Fragment - onViewCreated() - 아래쪽")
 
-        // viewModel = ViewModelProvider(this).get(Button4FragmentViewModel::class.java)
-        binding.button4.setOnClickListener {
-            Toast.makeText(context, "버튼을 눌렀다", Toast.LENGTH_SHORT).show()
+        binding.button4Int.text = viewModel.btnCount.toString()
+        binding.button4Int.setOnClickListener {
+            Toast.makeText(context, "버튼int을 눌렀다", Toast.LENGTH_SHORT).show()
+            viewModel.increaseBtn4IntCount()
+            binding.button4Int.text = viewModel.btnCount.toString()
         }
+
+
+        // TODO fragment에서는 왜 LifecycleOwner에 viewLifecycleOwner를 넣어야하는가?
+        // -> 프루님 블로그에 언급이 있는거 같던데, 안봐도 대강 느낌은 알겠는데, 나중에 블로그를 읽어보자.
+        viewModel.btnCountLiveData.observe(viewLifecycleOwner, Observer {
+            binding.button4Livedata.text = it.toString()
+        })
+        binding.button4Livedata.setOnClickListener {
+            Toast.makeText(context, "버튼livedata을 눌렀다", Toast.LENGTH_SHORT).show()
+            viewModel.increaseBtn4LivedataCount()
+        }
+
     }
 
     // =============================================
@@ -161,10 +178,12 @@ class Button4Fragment : Fragment() {
     // =============================================
 
     override fun onDestroyView() {
+
+        _binding = null
         Log.d("Button4Fragment", "Button4Fragment - onDestroyView() - 위쪽")
         super.onDestroyView()
         Log.d("Button4Fragment", "Button4Fragment - onDestroyView() - 아래쪽")
-        _binding = null
+
     }
 
     override fun onDestroy() {
