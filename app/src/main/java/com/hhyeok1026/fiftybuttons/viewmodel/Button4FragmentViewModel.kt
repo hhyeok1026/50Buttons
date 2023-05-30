@@ -38,8 +38,8 @@ class Button4FragmentViewModel : ViewModel() {
 
 
         _TODO : livedata는 왜 value값으로 접근을 해야하지?
-        ->  그냥 그런가보다 해야겠다.
-        mdata: Object값이 들어가있고 setValue, getValue메서드로 그 값 가져오게 되는 거니까
+        -> 이게, 박싱 랩핑이 아니고, 그냥 Object라는 변수가 private로 되어있어서 getter, setter사용하는거 같다.
+        -> 래퍼클래스는 기본자료형을 객체로 취급해서 사용할때 쓰려고 하는거고.
      */
 
     var btnCount: Int = 0

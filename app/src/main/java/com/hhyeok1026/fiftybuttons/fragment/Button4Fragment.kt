@@ -36,7 +36,6 @@ _TODO fragment에서 뷰모델 초기화를 어디서하나?
  -> fragment도 그냥 액티비티에서 by로 만들어서 쓰면 되는듯.
  */
 
-
 class Button4Fragment : Fragment() {
 
     private var _binding: FragmentButton4Binding? = null
@@ -95,8 +94,9 @@ class Button4Fragment : Fragment() {
         }
 
 
-        // TODO fragment에서는 왜 LifecycleOwner에 viewLifecycleOwner를 넣어야하는가?
+        // _TODO fragment에서는 왜 LifecycleOwner에 viewLifecycleOwner를 넣어야하는가? -> viewLifecycleOwner를 따르게 하려고.
         // -> 프루님 블로그에 언급이 있는거 같던데, 안봐도 대강 느낌은 알겠는데, 나중에 블로그를 읽어보자.
+        // -> 구글 문서에 lifecycles문서를 예전에는 아에 이해를 못했는데, 이번에 그 문서를 보니 약간 느낌을 알것 같다.
         viewModel.btnCountLiveData.observe(viewLifecycleOwner, Observer {
             binding.button4Livedata.text = it.toString()
         })
