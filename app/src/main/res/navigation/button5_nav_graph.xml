@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/button5_nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button5_nav_graph"
+    app:startDestination="@id/button5Fragment">
 
+    <fragment
+        android:id="@+id/button5Fragment"
+        android:name="com.hhyeok1026.fiftybuttons.fragment.`Button5-1Fragment`"
+        android:label="fragment_button5"
+        tools:layout="@layout/fragment1_button5" />
 </navigation>
