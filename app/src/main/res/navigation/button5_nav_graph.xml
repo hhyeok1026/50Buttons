@@ -3,11 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/button5_nav_graph"
-    app:startDestination="@id/button5Fragment">
+    app:startDestination="@id/button5Fragment1">
 
     <fragment
-        android:id="@+id/button5Fragment"
-        android:name="com.hhyeok1026.fiftybuttons.fragment.`Button5-1Fragment`"
-        android:label="fragment_button5"
-        tools:layout="@layout/fragment1_button5" />
+        android:id="@+id/button5Fragment1"
+        android:name="com.hhyeok1026.fiftybuttons.fragment.Button5Fragment1"
+        android:label="Button5Fragment1"
+        tools:layout="@layout/fragment1_button5">
+        <action
+            android:id="@+id/action_button5Fragment1_to_button5Fragment2"
+            app:destination="@id/button5Fragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/button5Fragment2"
+        android:name="com.hhyeok1026.fiftybuttons.fragment.Button5Fragment2"
+        android:label="fragment2_button5"
+        tools:layout="@layout/fragment2_button5" >
+        <action
+            android:id="@+id/action_button5Fragment2_to_button5Fragment1"
+            app:destination="@id/button5Fragment1" />
+    </fragment>
 </navigation>
